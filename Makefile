@@ -8,9 +8,9 @@ CFLAGS = -Wall -ansi -pedantic -g
 endif
 
 # OpenGL Libraries 
-GL_LIBS = -lGL -lglut
+GL_LIBS = -lglut -lGL
 GL_LIBDIR = -L/usr/X11/lib
-LINK_GL = $(GL_LIBDIR) $(GL_LIBS)
+LINK_GL = $(GL_LIBDIR)
 
 # all needed libraries
 LINK = $(LINK_GL)
@@ -29,7 +29,7 @@ run:	all
 
 # rule to build application
 $(APPNAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $(LINK) $(LDFLAGS) $(OBJECTS) -o$(APPNAME)
+	$(CC) $(CFLAGS) $(LINK) $(LDFLAGS) $(OBJECTS) $(GL_LIBS) -o$(APPNAME)
 
 # remove all unneeded files
 .PHONY: clean
